@@ -1,11 +1,11 @@
 package com.example.kothentication
 import com.example.kothentication.tokenmanagement.Token
-import com.google.gson.JsonParser
 import okhttp3.FormBody
 import okhttp3.HttpUrl.Companion.toHttpUrl
 import okhttp3.OkHttpClient
 import okhttp3.Request
-import okhttp3.RequestBody
+import com.google.gson.Gson
+
 
 interface HttpClient{
     fun post(url : String, body : Map<String, String>) : Token
@@ -17,6 +17,7 @@ interface HttpClient{
         responseType : String = "code",
         scope : List<String>? = null) : String
 }
+
 
 /**
  * Implementation of HttpClient that allows encapsulation for the use of OkHttp library.
@@ -30,15 +31,16 @@ class OkHttpAdapter(
      * in paragraphs 4.1.1 and 4.1.3 of RFC 6749.
      * @param url string identifying the token endpoint
      * @param body parameters to add in the request url
+     * @return a Token object
      */
     override fun post(url : String, body : Map<String, String>) : Token {
         var requestFormBuilder = FormBody.Builder()
 
         body.forEach { entry -> requestFormBuilder.add(entry.key, entry.value) }
 
-        var requestForm = requestFormBuilder.build()
+        val requestForm = requestFormBuilder.build()
 
-        var request = Request.Builder()
+        val request = Request.Builder()
             .url(url)
             .post(requestForm)
             .build()
@@ -52,22 +54,14 @@ class OkHttpAdapter(
 
     /**
      * @param responseBody body of an HTTP response
-     * @return a Token object
+     * @return a Token object, parsed from the response through use of the Gson library
      */
     override fun parseResponse(responseBody: String): Token {
-        val jsonObject = JsonParser.parseString(responseBody).asJsonObject
 
-        val tokenValue = jsonObject.get("access_token").asString
-        val refreshToken = jsonObject.get("refresh_token").asString
-        val expiresIn = jsonObject.get("expires_in").asInt
-        val tokenType = jsonObject.get("token_type").asString
+        val JSONparser = Gson()
+        val token : Token = JSONparser.fromJson(responseBody, Token::class.java)
 
-        return Token(
-            accessToken = tokenValue,
-            refreshToken = refreshToken,
-            timeLeft = expiresIn,
-            tokenType = tokenType
-        )
+        return token
     }
 
 
