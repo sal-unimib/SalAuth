@@ -1,13 +1,14 @@
-package com.example.kothentication
+package com.example.kothentication.httputilities
 import com.example.kothentication.tokenmanagement.Token
 import okhttp3.FormBody
 import okhttp3.HttpUrl.Companion.toHttpUrl
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import com.google.gson.Gson
+import okio.IOException
 
 
-interface HttpClient{
+internal interface HttpClient{
     fun post(url : String, body : Map<String, String>) : Token
     fun parseResponse(responseBody: String): Token
     fun buildAuthorizationUrl(
@@ -45,10 +46,23 @@ class OkHttpAdapter(
             .post(requestForm)
             .build()
 
-        client.newCall(request).execute().use { response ->
-            val rawBody = response.body.string()
-            return parseResponse(rawBody)
+        var rawBody : String
+
+        try{
+            val response = client.newCall(request).execute()
+
+            if(!response.isSuccessful){
+                throw InvalidResponseStatusException("ERROR ${response.code}")
+            }
+            rawBody = response.body.string()
+
+        }catch(e : IOException){
+            throw ConnectionException(e.message)
+        }catch(e : IllegalStateException){
+            throw ConnectionException(e.message)
         }
+
+        return parseResponse(rawBody)
     }
 
 
