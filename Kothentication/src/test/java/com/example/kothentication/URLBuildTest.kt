@@ -1,5 +1,6 @@
 package com.example.kothentication
 
+import com.example.kothentication.httputilities.OkHttpAdapter
 import okhttp3.HttpUrl.Companion.toHttpUrl
 import org.junit.Test
 import org.junit.Assert.*

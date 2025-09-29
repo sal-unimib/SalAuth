@@ -1,11 +1,10 @@
 package com.example.kothentication
+import com.example.kothentication.httputilities.HttpClient
+import com.example.kothentication.httputilities.OkHttpAdapter
 import com.example.kothentication.tokenmanagement.Token
-import okhttp3.HttpUrl
-import okhttp3.HttpUrl.Companion.toHttpUrl
-import okhttp3.OkHttpClient
 
 
-class OAuth2Process(
+internal class OAuth2Process(
     val client : HttpClient = OkHttpAdapter(),  // client used for all HTTP connections
     val authProvider : AuthenticationProvider   // provide used for authentications
 ) {
@@ -41,6 +40,7 @@ class OAuth2Process(
             "redirect_uri" to redirectUri,
             "client_id" to clientId,
         )
+
         return client.post(url, params)
     }
 } 
