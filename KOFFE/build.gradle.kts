@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.kothentication"
+    namespace = "com.salauth.koffe"
     compileSdk = 35
 
     defaultConfig {

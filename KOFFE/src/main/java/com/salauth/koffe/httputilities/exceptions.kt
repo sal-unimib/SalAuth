@@ -1,4 +1,4 @@
-package com.example.kothentication.httputilities
+package com.salauth.koffe.httputilities
 
 class ConnectionException(message : String?) : Exception() {
 }

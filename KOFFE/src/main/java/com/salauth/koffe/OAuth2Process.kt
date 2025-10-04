@@ -1,7 +1,7 @@
-package com.example.kothentication
-import com.example.kothentication.httputilities.HttpClient
-import com.example.kothentication.httputilities.OkHttpAdapter
-import com.example.kothentication.tokenmanagement.Token
+package com.salauth.koffe
+import com.salauth.koffe.httputilities.HttpClient
+import com.salauth.koffe.httputilities.OkHttpAdapter
+import com.salauth.koffe.tokenmanagement.Token
 
 
 internal class OAuth2Process(

@@ -1,5 +1,5 @@
-package com.example.kothentication.httputilities
-import com.example.kothentication.tokenmanagement.Token
+package com.salauth.koffe.httputilities
+import com.salauth.koffe.tokenmanagement.Token
 import okhttp3.FormBody
 import okhttp3.HttpUrl.Companion.toHttpUrl
 import okhttp3.OkHttpClient

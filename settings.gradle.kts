@@ -21,4 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "SalAuth"
 include(":app")
-include(":Kothentication")
+include(":KOFFE")

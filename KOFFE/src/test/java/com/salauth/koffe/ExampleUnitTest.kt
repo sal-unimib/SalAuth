@@ -1,4 +1,4 @@
-package com.example.kothentication
+package com.salauth.koffe
 
 import org.junit.Test
 

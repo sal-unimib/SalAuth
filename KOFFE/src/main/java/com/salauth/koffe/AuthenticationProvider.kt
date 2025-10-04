@@ -1,4 +1,4 @@
-package com.example.kothentication
+package com.salauth.koffe
 
 /**
  * Class containing data made available by an authentication provider to developers

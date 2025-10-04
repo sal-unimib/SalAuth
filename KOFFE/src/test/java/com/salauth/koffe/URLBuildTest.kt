@@ -1,6 +1,6 @@
-package com.example.kothentication
+package com.salauth.koffe
 
-import com.example.kothentication.httputilities.OkHttpAdapter
+import com.salauth.koffe.httputilities.OkHttpAdapter
 import okhttp3.HttpUrl.Companion.toHttpUrl
 import org.junit.Test
 import org.junit.Assert.*

@@ -1,4 +1,4 @@
-package com.example.kothentication.tokenmanagement
+package com.salauth.koffe.tokenmanagement
 
 import com.google.gson.annotations.SerializedName
 

@@ -1,6 +1,4 @@
-package com.example.kothentication
-
-import com.example.kothentication.tokenmanagement.Token
+package com.salauth.koffe
 
 
 /**
@@ -8,7 +6,7 @@ import com.example.kothentication.tokenmanagement.Token
  * Upon creation the user provides the CLIENT_ID used by the app to access the API
  * and the redirect_uri used in authorization and access token request
  */
-class AccessFacade(
+class Authenticator(
     private val clientId : String,
     private val redirect : String
 ) {
